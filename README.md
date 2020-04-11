@@ -30,4 +30,4 @@ In this repository, 3 directories are present...
 ## Videos
 - We uploaded 2 videos.
 1. First video contains the explaination and demonstration of our project.
-2. Second video is much smaller. This video does not exaplain any thing. We onlt showed integrated SVD algorithm which was done after recording first video
+2. Second video is much smaller. This video does not exaplain any thing. We only showed integrated SVD algorithm which was done after recording first video
