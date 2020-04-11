@@ -13,7 +13,7 @@ from .tasks import SendEmails
 from textblob import TextBlob
 from random import randint
 from models.BooksData import BooksData
-from surprise import KNNBasic, SVDpp
+from surprise import KNNBasic, SVD
 import numpy as np
 import heapq
 from collections import defaultdict
@@ -275,14 +275,42 @@ def recommendations(request):
                 if (pos > 10):
                     break
 
-        bks = []
+        UCB = []
 
         for _ in bks2:
-            bks.append(Book.objects.get(ISBN=_))
+            UCB.append(Book.objects.get(ISBN=_))
 
+
+        # SVD Algorithms
+        def GetAntiTestSetForUser(testSubject, trainSet):
+            fill = trainSet.global_mean
+            anti_testset = []
+            u = trainSet.to_inner_uid(str(testSubject))
+            user_items = set([j for (j, _) in trainSet.ur[u]])
+            anti_testset += [(trainSet.to_raw_uid(u), trainSet.to_raw_iid(i), fill) for
+                             i in trainSet.all_items() if
+                             i not in user_items]
+            return anti_testset
+
+        model = SVD()
+        model.fit(trainSet)
+        testSet = GetAntiTestSetForUser(testSubject, trainSet)
+        predictions = model.test(testSet)
+        recommendations = []
+        for userID, ISBN, actualRating, estimatedRating, _ in predictions:
+            isbn = ISBN
+            recommendations.append((isbn, estimatedRating))
+
+        recommendations.sort(key=lambda x: x[1], reverse=True)
+
+        SVDB = []
+        for ratings in recommendations[:k]:
+            # print(bk.getBookName(ratings[0]))
+            SVDB.append(Book.objects.get(ISBN = ratings[0]))
     except:
-        bks = []
-    return render(request, 'LibraryMS/recommendations.html', {'bks': bks})
+        UCB = []
+        SVDB = []
+    return render(request, 'LibraryMS/recommendations.html', {'UCB': UCB, 'SVDB': SVDB})
 
 @login_required
 def HoldBook(request, pk):
