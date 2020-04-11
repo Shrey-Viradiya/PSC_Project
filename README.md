@@ -26,3 +26,8 @@ In this repository, 3 directories are present...
 - #### First two directories can be run with out any additional requirements after installing required libraries.
 - #### LMS can be installed in the successfully in your system. To run this project you must have PostgreSQL DBMS in your system (or any other which is supported by django). You must link the Database with project in settings.py file in LMS subdirectory in LMS directory.
 - #### After completing this integration we have data of nearly 9800 books. Which you have to add in the database. THIS IS TIME CONSUMING STEP.
+
+## Videos
+- We uploaded 2 videos.
+1. First video contains the explaination and demonstration of our project.
+2. Second video is much smaller. This video does not exaplain any thing. We onlt showed integrated SVD algorithm which was done after recording first video
