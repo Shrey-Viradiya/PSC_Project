@@ -1,24 +1,24 @@
-from MovieLens import MovieLens
+from models.BooksData import BooksData
 from surprise import SVD, SVDpp
 from surprise import NormalPredictor
-from Evaluator import Evaluator
+from models.Evaluator import Evaluator
 
 import random
 import numpy as np
 
-def LoadMovieLensData():
-    ml = MovieLens()
+def LoadBookData():
+    bk = BooksData('../data_100/')
     print("Loading movie ratings...")
-    data = ml.loadMovieLensLatestSmall()
+    data = bk.loadBooksData()
     print("\nComputing movie popularity ranks so we can measure novelty later...")
-    rankings = ml.getPopularityRanks()
-    return (ml, data, rankings)
+    rankings = bk.getPopularityRanks()
+    return (bk, data, rankings)
 
 np.random.seed(0)
 random.seed(0)
 
 # Load up common data set for the recommender algorithms
-(ml, evaluationData, rankings) = LoadMovieLensData()
+(bk, evaluationData, rankings) = LoadBookData()
 
 # Construct an Evaluator to, you know, evaluate them
 evaluator = Evaluator(evaluationData, rankings)
@@ -38,4 +38,4 @@ evaluator.AddAlgorithm(Random, "Random")
 # Fight!
 evaluator.Evaluate(False)
 
-evaluator.SampleTopNRecs(ml)
+evaluator.SampleTopNRecs(bk, testSubject=276680)
