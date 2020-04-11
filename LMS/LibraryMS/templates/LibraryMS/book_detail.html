@@ -1,0 +1,34 @@
+{% extends "users/base.html" %}
+
+{% block content %}
+    
+    <div class="d-xl-flex align-items-xl-start">
+    <div class="book-preview">
+            <h2 class="book-title">{{ object.title }}</h2>
+            <h4 class="">ISBN: {{ object.ISBN }}</h4>
+            By
+            <p class="post-meta">
+                {% for author in object.authors.all %}
+                    {{ author }}<br>
+                {% endfor %}
+            </p>
+            <p class="book-subtitle">{{ object.publisher }}</p>
+
+            <h5>Available Copies:</h5>
+            <p>
+            {% for copy in copies %}
+                <small>Book_id:</small> {{ copy.book_id }}<br>
+            {% endfor %}
+            </p>
+    </div>
+    
+    </div>
+
+    <div>
+        {% if user.is_authenticated %}
+            <a class="btn-sm btn-outline-info" href="{% url 'book-hold' object.ISBN %}"><u>Hold Book</u></a>
+        {% endif %}
+    </div>
+    <hr>
+    
+{% endblock content %}  

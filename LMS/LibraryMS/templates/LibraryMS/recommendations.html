@@ -1,0 +1,27 @@
+{% extends "users/base.html" %}
+
+{% block content %}
+
+    <h3>Recommended Books</h3>
+    <hr>
+    {% if bks %}
+        {% for bk in bks %}
+            <div class="d-xl-flex align-items-xl-start">
+            <div class="book-preview">
+                <a href="{% url 'book-detail' bk.ISBN %}"><h2 class="book-title">{{ bk.title }}</h2></a>
+                <h5 class="">ISBN: {{ bk.ISBN }}</h5>
+                By
+                <p class="post-meta">
+                    {% for author in bk.authors.all %}
+                        {{ author }}&nbsp;
+                    {% endfor %}
+                </p>
+                <p><small>Publisher:</small> {{ bk.publisher }}</p>
+        </div>
+        </div>
+            <hr>
+        {% endfor %}
+    {% else %}
+        <p class="book-subtitle">No Books Recommended.... Start reviewing books to get recommendations</p>
+    {% endif %}
+{% endblock content %}

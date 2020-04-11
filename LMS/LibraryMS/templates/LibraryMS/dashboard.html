@@ -1,0 +1,104 @@
+{% extends "users/base.html" %}
+
+{% block content %}
+    <h2 xmlns="http://www.w3.org/1999/html">DashBoard</h2>
+    <h1>Library Management System</h1>
+    <p>Last Login: {{ request.user.last_login }}</p>
+
+    <hr>
+
+    <h3>Pending Reviews</h3>
+    <hr>
+    {% if prs %}
+        {% for book, isbn in prs %}
+            <div class="d-xl-flex align-items-xl-start">
+            <div class="book-preview">
+                <a href="{% url 'book-review' isbn %}"><h2 class="book-title">{{ book }}</h2></a>
+                <h5 class="">ISBN: {{ isbn }}</h5>
+        </div>
+        </div>
+            <hr>
+        {% endfor %}
+    {% else %}
+        <p class="book-subtitle">No Reviews Pending</p>
+    {% endif %}
+
+
+
+    <h3>Borrowed Books</h3>
+    <hr>
+    {% if B_books %}
+        {% for book, res_date, due_date in B_books %}
+            <div class="d-xl-flex align-items-xl-start">
+            <div class="book-preview">
+                <h2 class="book-title">{{ book.ISBN.title }}</h2>
+                <h5 class="">ISBN: {{ book.ISBN.ISBN }}</h5>
+                By
+                <p class="post-meta">
+                    {% for author in book.ISBN.authors.all %}
+                        {{ author }}&nbsp;
+                    {% endfor %}
+                </p>
+                <p><small>Publisher:</small> {{ book.ISBN.publisher }}</p>
+                <p><small>Borrowed Date:</small> {{ res_date }}</p>
+                <p><small>Due Date:</small> {{ due_date }}</p>
+        </div>
+        </div>
+            <hr>
+        {% endfor %}
+    {% else %}
+        <p class="book-subtitle">No Books Borrowed</p>
+    {% endif %}
+
+
+
+    <h3>Reserved Books</h3>
+    <hr>
+    {% if H_books %}
+        {% for book, due_date in H_books %}
+            <div class="d-xl-flex align-items-xl-start">
+            <div class="book-preview">
+                <h2 class="book-title">{{ book.title }}</h2>
+                <h5 class="">ISBN: {{ book.ISBN }}</h5>
+    {#            By#}
+    {#            <p class="post-meta">#}
+    {#                {% for author in book.authors.all %}#}
+    {#                    {{ author }}&nbsp;#}
+    {#                {% endfor %}#}
+    {#            </p>#}
+{#                <p class="post-subtitle"><small>Publisher:</small> {{ book.ISBN.publisher }}</p>#}
+
+                <p><small>Due Date:</small> {{ due_date }}</p>
+            </div>
+        </div>
+            <hr>
+        {% endfor %}
+    {% else %}
+        <p class="post-subtitle">No Books Reserved</p>
+    {% endif %}
+
+
+    <h3>Your History</h3>
+    <hr>
+    {% if history %}
+        {% for title, ISBN in history %}
+            <div class="d-xl-flex align-items-xl-start">
+            <div class="book-preview">
+                <h2 class="book-title">{{ title }}</h2>
+                <h5 class="">ISBN: {{ ISBN }}</h5>
+    {#            By#}
+    {#            <p class="post-meta">#}
+    {#                {% for author in book.authors.all %}#}
+    {#                    {{ author }}&nbsp;#}
+    {#                {% endfor %}#}
+    {#            </p>#}
+{#                <p class="post-subtitle"><small>Publisher:</small> {{ book.ISBN.publisher }}</p>#}
+
+            </div>
+        </div>
+            <hr>
+        {% endfor %}
+    {% else %}
+        <p class="post-subtitle">No History Records. Your History records will be available after you return the book.</p>
+    {% endif %}
+{% endblock content %}

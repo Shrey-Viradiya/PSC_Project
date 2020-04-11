@@ -1,0 +1,9 @@
+{% extends "users/base.html" %}
+
+{% block content %}
+
+    <a class="nav-link" href="{% url 'add-author' %}">Add Author</a>
+    <a class="nav-link" href="{% url 'add-publisher' %}">Add-Publisher</a>
+    <a class="nav-link" href="{% url 'add-book' %}">Add-book</a>
+
+{% endblock content %}

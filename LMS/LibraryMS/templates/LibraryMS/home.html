@@ -1,0 +1,60 @@
+{% extends "users/base.html" %}
+
+{% block content %}
+    <h2>Home Page</h2>
+    <h1>Library Management System</h1>
+
+    <form action="{% url 'LMS-home' %}" method="GET" value="{{request.GET.q}}">
+        <input type="text" name="q" value="{{request.GET.q}}" class="textinput textInput form-control" placeholder="Search Books by title, author or publication"/>
+        <input type="submit" name="submit" class="btn btn-outline-info" style="margin-top: 10px" value="Search"/>
+    </form>
+
+<br>
+{% if submitbutton == 'Search' and request.GET.q != '' %}
+
+{% if results %}
+    <h3>Results for <b>{{ request.GET.q }}</b></h3>
+    <small>{{ count }} results found</small>
+    <hr>
+    {% for result in results %}
+        {% if 'X' not in result.ISBN %}
+        <div class="d-xl-flex align-items-xl-start">
+        <div class="book-preview">
+            <a href="{% url 'book-detail' result.ISBN %}"><h2 class="book-title">{{ result.title }}</h2></a>
+            <h5 class="">ISBN: {{ result.ISBN }}</h5>
+            By
+            <p class="post-meta">
+                {% for author in result.authors.all %}
+                    {{ author }}&nbsp;
+                {% endfor %}
+            </p>
+            <p class="post-subtitle"><small>Ratings:</small> {{ result.rating }}</p>
+            <p class="post-subtitle"><small>Ratings Counts:</small> {{ result.review_count }}</p>
+            <p class="post-subtitle"><small>Publisher:</small> {{ result.publisher }}</p>
+    </div>
+    </div>
+        {% else %}
+            <div class="d-xl-flex align-items-xl-start">
+            <div class="book-preview">
+                <a href="{% url 'book-detail' result.ISBN %}"><h2 class="book-title">{{ result.title }}</h2></a>
+                <h5 class="">ISBN: {{ result.ISBN }}</h5>
+                By
+                <p class="post-meta">
+                    {% for author in result.authors.all %}
+                        {{ author }}&nbsp;
+                    {% endfor %}
+                </p>
+                <p class="post-subtitle"><small>Ratings:</small> {{ result.rating }}</p>
+                <p class="post-subtitle"><small>Ratings Counts:</small> {{ result.review_count }}</p>
+                <p class="post-subtitle"><small>Publisher:</small> {{ result.publisher }}</p>
+        </div>
+        </div>
+        {% endif %}
+        <hr>
+    {% endfor %}
+    {% else %}
+        No search results for this query
+    {% endif %}
+{% endif %}
+
+{% endblock content %}
