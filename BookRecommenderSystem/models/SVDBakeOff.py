@@ -8,9 +8,9 @@ import numpy as np
 
 def LoadBookData():
     bk = BooksData('../data_100/')
-    print("Loading movie ratings...")
+    print("Loading books ratings...")
     data = bk.loadBooksData()
-    print("\nComputing movie popularity ranks so we can measure novelty later...")
+    print("\nComputing books popularity ranks so we can measure novelty later...")
     rankings = bk.getPopularityRanks()
     return (bk, data, rankings)
 
