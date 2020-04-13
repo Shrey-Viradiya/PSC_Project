@@ -14,21 +14,21 @@ In the modern technological era, all the web content based applications like Net
 
 In this repository, **3 directories** are present...
 
-## 1-SentimentAna:
+### 1-SentimentAna:
 Contains a ipynb file showing our work on Sentiment Analysis.
 
 In this, we used **Textblob** library built upon **nltk** environment. TextBlob is a Python library for processing textual data. It provides a simple API for diving into common natural language processing (NLP) tasks such as part-of-speech tagging, noun phrase extraction, sentiment analysis, classification, translation, and more.
 
 The sentiment property of Textblob returns a namedtuple of the form **Sentiment(polarity, subjectivity)**. The polarity score is a float within the range **[-1.0, 1.0]**. The subjectivity is a float within the range **[0.0, 1.0]** where 0.0 is very objective and 1.0 is very subjective.
 
-So if the polarity of a sentiment is greater than 0, then sentiment is consider as positive otherwise negative. If the Sentiment is positive then we are giving **5 ratings** and if it is negative then we are giving **rating 1** to the book based on the review given by user.
+So if the polarity of a sentiment is greater than 0, then sentiment is consider as positive otherwise negative. If the Sentiment is positive then we are giving **5 ratings** and if it is negative then we are giving **rating 1** to the book based on the review given by user. Then finally taking the average of all ratings we are generating automatic rating of a book based on the review given by the users!
 
 **Limitation -** This a approach fails when the sentiment is too objective!
 
-## 2-BookRecommenderSystem:
+### 2-BookRecommenderSystem:
 Contains our work and dataset for Book Recommendation.
 
-## 3-LMS: 
+### 3-LMS: 
 Contains a django project of Library Management System. This django project has integrated Sentiment Analysis and Book Recommendations which are described in the previos directories.
 
 ## Notice: 
