@@ -12,9 +12,9 @@ In the modern technological era, all the web content based applications like Net
 
 ## Description:
 
-In this repository, 3 directories are present...
+In this repository, **3 directories** are present...
 
-### 1-SentimentAna:
+## 1-SentimentAna:
 Contains a ipynb file showing our work on Sentiment Analysis.
 
 In this, we used **Textblob** library built upon **nltk** environment. TextBlob is a Python library for processing textual data. It provides a simple API for diving into common natural language processing (NLP) tasks such as part-of-speech tagging, noun phrase extraction, sentiment analysis, classification, translation, and more.
