@@ -42,6 +42,7 @@ We integrated KNN user based CF and SVD in our LMS system.
 
 Analysis of algorithms is done in SVDBakeOff.py file.
 It computes RMSE,MAE,Hitrate,Coverage etc.
+Best results are obtained with SVD algorithm.
 
 **Limitation -** Item based colloborative filtering for large dataset requires high computing power.
 
