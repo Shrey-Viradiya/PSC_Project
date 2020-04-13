@@ -8,7 +8,8 @@ Students:
 
 ## Introduction:
 
-In the modern technological era, all the web content based applications like Netflix, Amazon, Flipkart or social medias like Instagram, Facebook or literally any web application implemented Recommedation System and sentiment analysis on the product reviews they get.
+In the modern technological era, Recommandation system and Sentiment Analysis are leading in the manners by which content-serving sites like Facebook, Amazon, Spotify,Netflix Flipkart or social medias like Instagram, Facebook or literally any web application interact with thier user. All the web content based applications mentioned above implemented Recommedation System and sentiment analysis on the product reviews they get.
+**Our django based LMS web application manages the catalog of a library along with recommendations as well as sentimental analysis.** 
 
 ## Description:
 
@@ -27,6 +28,22 @@ So if the polarity of a sentiment is greater than 0, then sentiment is consider 
 
 ### 2-BookRecommenderSystem:
 Contains our work and dataset for Book Recommendation.
+We have used colloborative filtering. This approach find users who have given similar ratings to the same book.
+
+Algorithms included in BookRecommenderSystem : 1. Matrix factorization methods such as SVD and SVD++(Netflix prize winner algo)
+                                               2. K-Nearest-Neighbours user based colloborative filtering
+                                               3. K-Nearest-Neighbours item based colloborative filtering
+
+Surprise python library is used to generate reccomandation. It provides a nice API and a nice pipeline for recommender systems. We used the Surprise library in order to do matrix factorization on the user-item matrix.
+
+kNN is a machine learning algorithm to find clusters of similar users based on common book ratings, and make predictions using the average rating of top-k nearest neighbors. The SVD algorithm of Surprise uses Gradient Descent to optimize the RMSE . **The main difference is that Surprise does not assume that unrated items are rated as 0.**
+
+We integrated KNN user based CF and SVD in our LMS system.
+
+Analysis of algorithms is done in SVDBakeOff.py file.
+It computes RMSE,MAE,Hitrate,Coverage etc.
+
+**Limitation -** Item based colloborative filtering for large dataset requires high computing power.
 
 ### 3-LMS: 
 Contains a django project of Library Management System. This django project has integrated Sentiment Analysis and Book Recommendations which are described in the previos directories.
