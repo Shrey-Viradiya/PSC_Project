@@ -41,4 +41,4 @@ Small well processed dataset is used in LMS web application.
     The SVD++ algorithm is an extension of SVD that takes into account implicit ratings.
 
 
-*Surprise library used to make recommandation.*
+*Surprise library is used to make recommandation.*
